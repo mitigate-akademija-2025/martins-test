@@ -1,12 +1,20 @@
 <div id="<%= dom_id quiz %>">
   <p>
-    <strong>Title:</strong>
-    <%= quiz.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
     <%= quiz.description %>
   </p>
+
+  <% if quiz.questions.any? %>
+    <ol>
+      <% quiz.questions.each do |question| %>
+        <li><%= question.name %></li>
+      <% end %>
+    </ol>
+  <% else %>
+    <p>
+      <strong>No questions available for this quiz.</strong>
+    </p>
+  <% end %>
+
+  <%= link_to 'New question', new_quiz_question_path(quiz) %>
 
 </div>
